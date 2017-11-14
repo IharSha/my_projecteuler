@@ -1,19 +1,22 @@
 days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-cur_day = 0
+day_of_the_week = 2
 sundays = 0
-cur_year = 1900
+cur_year = 1901
 last_one = 2001
 while cur_year < last_one:
     for i in days:
         if (cur_year % 4 == 0 or cur_year == 2000) and i == 28:
-            cur_day += i + 1
+            day_of_the_week = (day_of_the_week + i + 1) % 7
         else:
-            cur_day += i
-        if (cur_day + 1) % 7 == 0:
+            day_of_the_week = (day_of_the_week + i) % 7
+        if day_of_the_week == 0:
             sundays += 1
-    cur_year += 1
-    if cur_year == last_one:
-        if cur_day % 7 == 0:
+    if cur_year == 2000:  # we shouldn't count jan the first in 2001 if it's Sunday
+        if day_of_the_week == 0:
             sundays -= 1
-print(sundays - 2)
+    cur_year += 1
+print(sundays)
+
+# or if datetime.datetime(y,m,1).weekday() == 6: count += 1 :)
+# or 1200/7 = 171
