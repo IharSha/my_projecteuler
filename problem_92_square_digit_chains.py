@@ -13,10 +13,11 @@ def chain_ending(n):
     return n
 
 
-ending_89 = set(i for i in range(1, 568) if chain_ending(i) == 89)
-
+exp = 7
 counter = 0
-ten_millions = 10**7
+ten_millions = 10**exp
+
+ending_89 = set(i for i in range(1, 9*9*exp) if chain_ending(i) == 89)
 
 for i in range(1, ten_millions):
     if square_digit_sum(i) in ending_89:
